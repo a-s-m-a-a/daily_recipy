@@ -14,11 +14,14 @@ class SplashPage extends StatefulWidget {
 class SplashPageState extends State<SplashPage> {
   static const String keyLogin = "login";
   @override
-  void initstate() {
+  void initState() {
     super.initState();
     whereToGo();
+    setState(() {
+      
+    });
   }
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(

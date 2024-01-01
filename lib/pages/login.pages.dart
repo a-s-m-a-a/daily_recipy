@@ -20,40 +20,42 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: Container(
-          width: width,
-          height: height,
-          decoration:  BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(ImagesPath.background),
-              fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          child: Container(
+            width: width,
+            height: height,
+            decoration:  BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(ImagesPath.background),
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 80),
-            child: Column(
-              children: [
-
-                  Padding(
-                  padding: const EdgeInsets.fromLTRB(10,10,10,0),
-                  child: Column(
-                    children: [
-                      Image(image: AssetImage(ImagesPath.logo)),
-                      const Text("Sign In",style:  TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold,), ),
-                      reusableTextField(
-                          false, Icons.email, "Email Address"),
-                      reusableTextField(
-                          true, Icons.password, "Password"),
-                      richText(
-                          1, ["Forget Password?"], [hexStringToColor("#12819D")], [() {}]),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: reusableButton(width, 50, "Sign In", splashFunction(context,const HomePage(),true)),
-                      ),
-                    ],
+            child: Padding(
+              padding: const EdgeInsets.only(top: 80),
+              child: Column(
+                children: [
+          
+                    Padding(
+                    padding: const EdgeInsets.fromLTRB(10,10,10,0),
+                    child: Column(
+                      children: [
+                        Image(image: AssetImage(ImagesPath.logo)),
+                        const Text("Sign In",style:  TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold,), ),
+                        reusableTextField(
+                            false, Icons.email, "Email Address"),
+                        reusableTextField(
+                            true, Icons.password, "Password"),
+                        richText(
+                            1, ["Forget Password?"], [hexStringToColor("#12819D")], [() {}]),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: reusableButton(width, 50, "Sign In", splashFunction(context,const HomePage(),true)),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

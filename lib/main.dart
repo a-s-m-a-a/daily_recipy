@@ -1,5 +1,4 @@
-import 'package:daily_recipy/pages/home.pages.dart';
-//import 'package:daily_recipy/pages/splash.pages.dart';
+import 'package:daily_recipy/pages/splash.pages.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,11 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const SplashPage(),
     );
   }
 }

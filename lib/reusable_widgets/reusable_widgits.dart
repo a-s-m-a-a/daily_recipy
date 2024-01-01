@@ -98,3 +98,5 @@ Function splashFunction(var context, Widget pushToPage, bool isLogIn) {
 
   return fun;
 }
+
+
