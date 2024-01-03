@@ -2,25 +2,33 @@ import 'package:daily_recipy/pages/splash.pages.dart';
 import 'package:daily_recipy/utils/colors.utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Padding reusableTextField(
-    bool isPasswordType, IconData icon, String lableText) {
+Padding reusableTextFormField(bool isPasswordType, IconData icon,
+    String lableText, String validateText, TextEditingController controller) {
   return Padding(
     padding: const EdgeInsets.all(20),
-    child: TextField(
+    child: TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return validateText;
+        }
+        return null;
+      },
+      controller: controller,
       obscureText: isPasswordType,
       enableSuggestions: isPasswordType,
       autocorrect: isPasswordType,
-      cursorColor: Colors.black,
+      cursorColor: Colors.orange,
       keyboardType: isPasswordType
           ? TextInputType.visiblePassword
           : TextInputType.emailAddress,
-      style:
-          const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       decoration: InputDecoration(
-        suffixIcon:
-            isPasswordType ? const Icon(Icons.visibility_off) : const Icon(Icons.edit),
+        suffixIcon: isPasswordType
+            ? const Icon(Icons.visibility_off)
+            : const Icon(Icons.edit),
         prefixIcon: Icon(
           icon,
           color: Colors.white,
@@ -29,7 +37,7 @@ Padding reusableTextField(
         labelStyle:
             const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         filled: false,
-        floatingLabelBehavior: FloatingLabelBehavior.never,
+        floatingLabelBehavior: FloatingLabelBehavior.auto ,
       ),
     ),
   );
@@ -89,9 +97,8 @@ RichText richText(
 }
 
 Function splashFunction(var context, Widget pushToPage, bool isLogIn) {
-  fun() async {
-    var sharedPref = await SharedPreferences.getInstance();
-    sharedPref.setBool(SplashPageState.keyLogin, isLogIn);
+  fun()  {
+    GetIt.I.get<SharedPreferences>().setBool("isLogin", isLogIn);
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => pushToPage));
   }
@@ -99,4 +106,8 @@ Function splashFunction(var context, Widget pushToPage, bool isLogIn) {
   return fun;
 }
 
-
+SizedBox horisontalSpace() {
+  return const SizedBox(
+    height: 10,
+  );
+}

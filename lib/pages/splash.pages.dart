@@ -2,24 +2,22 @@ import 'package:daily_recipy/pages/home.pages.dart';
 import 'package:daily_recipy/pages/signin_or_signup.pages.dart';
 import 'package:daily_recipy/utils/images.utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<SplashPage> createState() => SplashPageState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class SplashPageState extends State<SplashPage> {
-  static const String keyLogin = "login";
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    whereToGo();
-    setState(() {
-      
-    });
+    initSplash();
+    setState(() {});
   }
   @override
   Widget build(BuildContext context) {
@@ -46,21 +44,14 @@ class SplashPageState extends State<SplashPage> {
     ));
   }
 
-  void whereToGo() async {
-    var sharedPre = await SharedPreferences.getInstance();
-    var isLogin = sharedPre.getBool(keyLogin);
+  void initSplash() async {
     Future.delayed(
         const Duration(
           seconds: 5,
         ), () {
-      if (isLogin != null) {
-        if (isLogin) {
+      if (GetIt.I.get<SharedPreferences>().getBool('isLogin') ?? false) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const HomePage()));
-        } else {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const SigniniOrSignup()));
-        }
       } else {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const SigniniOrSignup()));
