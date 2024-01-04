@@ -1,4 +1,3 @@
-import 'package:daily_recipy/pages/splash.pages.dart';
 import 'package:daily_recipy/utils/colors.utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

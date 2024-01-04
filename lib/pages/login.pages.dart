@@ -94,7 +94,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      floatingActionButton: richText(2, [
+      //if keybourd pushed then delete floating action button 
+      floatingActionButton: ( MediaQuery.of(context).viewInsets.bottom == 0) ? richText(2, [
         "Don't have an account? ",
         "Register"
       ], [
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const RegisterPage()));
         }
-      ]),
+      ]) : null,
     );
   }
 }

@@ -19,6 +19,7 @@ class _SplashPageState extends State<SplashPage> {
     initSplash();
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,8 +51,8 @@ class _SplashPageState extends State<SplashPage> {
           seconds: 5,
         ), () {
       if (GetIt.I.get<SharedPreferences>().getBool('isLogin') ?? false) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const SigniniOrSignup()));

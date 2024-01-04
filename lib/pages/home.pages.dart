@@ -35,8 +35,10 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.logout),
             onPressed: () {
               GetIt.I.get<SharedPreferences>().setBool('isLogin', false);
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const SigniniOrSignup()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SigniniOrSignup()));
             },
           ),
         ],
@@ -177,37 +179,61 @@ class _HomePageState extends State<HomePage> {
               Row(children: [
                 Container(
                   width: 190,
-                  height: 300,
-                  color: hexStringToColor("f7f8fc"),
+                  decoration: BoxDecoration(
+                    color: hexStringToColor("f7f8fc"),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 15, bottom: 15),
                     child: Column(
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Icon(
                               Icons.favorite_border_outlined,
                             ),
-                            const Spacer(),
-                            Image(
-                              image: AssetImage(ImagesPath.today1),
-                              width: 150,
-                              height: 150,
+                            Transform.translate(
+                              offset: Offset(60, -40),
+                              child: Expanded(
+                                child: Container(
+                                  height: 130,
+                                  child: Image(
+                                    image: AssetImage(ImagesPath.today1),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Breakfast",
-                            style: TextStyle(
-                                color: hexStringToColor("128fae"),
-                                fontSize: 15),
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              "Breakfast",
+                              style: TextStyle(
+                                  color: hexStringToColor("128fae"),
+                                  fontSize: 15),
+                            ),
+                          ],
                         ),
-                        const Text(
-                          "French Toast with Berries",
-                          style: TextStyle(fontSize: 20),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "French Toast with Berries",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Row(
                           children: [
@@ -233,63 +259,103 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "120 Calories",
-                              style: TextStyle(
-                                color: hexStringToColor("f55a00"),
-                                fontSize: 10,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "120 Calories",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: hexStringToColor("f55a00"),
+                                  ),
+                                ),
                               ),
-                            )),
+                            ],
+                          ),
+                        ),
                         const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(Icons.timer),
-                            Text(" 10 mins"),
-                            Spacer(),
-                            Icon(Icons.restaurant),
-                            Text(" 1 Serving"),
+                            Row(
+                              children: [
+                                Icon(Icons.access_time),
+                                Text(" 10 mins"),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.timer),
+                                Text(" 1 Serving"),
+                              ],
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
                 ),
-                Spacer(),
-                Container(
+                const Spacer(),
+                 Container(
                   width: 190,
-                  height: 300,
-                  color: hexStringToColor("f7f8fc"),
+                  decoration: BoxDecoration(
+                    color: hexStringToColor("f7f8fc"),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding:
+                        const EdgeInsets.only(top: 15, left: 15, bottom: 15),
                     child: Column(
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Icon(
                               Icons.favorite_border_outlined,
-                              color: Colors.red,
                             ),
-                            const Spacer(),
-                            Image(
-                              image: AssetImage(ImagesPath.today1),
-                              width: 150,
-                              height: 150,
+                            Transform.translate(
+                              offset: Offset(60, -40),
+                              child: Expanded(
+                                child: Container(
+                                  height: 130,
+                                  child: Image(
+                                    image: AssetImage(ImagesPath.today1),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "Breakfast",
-                            style: TextStyle(
-                                color: hexStringToColor("128fae"),
-                                fontSize: 15),
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              "Breakfast",
+                              style: TextStyle(
+                                  color: hexStringToColor("128fae"),
+                                  fontSize: 15),
+                            ),
+                          ],
                         ),
-                        const Text(
-                          "French Toast with Berries",
-                          style: TextStyle(fontSize: 20),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "French Toast with Berries",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Row(
                           children: [
@@ -315,29 +381,47 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                        Container(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              "120 Calories",
-                              style: TextStyle(
-                                color: hexStringToColor("f55a00"),
-                                fontSize: 10,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  "120 Calories",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: hexStringToColor("f55a00"),
+                                  ),
+                                ),
                               ),
-                            )),
+                            ],
+                          ),
+                        ),
                         const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(Icons.timer),
-                            Text(" 10 mins"),
-                            Spacer(),
-                            Icon(Icons.restaurant),
-                            Text(" 1 Serving"),
+                            Row(
+                              children: [
+                                Icon(Icons.access_time),
+                                Text(" 10 mins"),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(Icons.timer),
+                                Text(" 1 Serving"),
+                              ],
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
-                )
-              ]),
+                ),
+               
+                 ]),
             ]),
           ),
         ),
