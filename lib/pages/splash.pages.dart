@@ -1,9 +1,8 @@
 import 'package:daily_recipy/pages/home.pages.dart';
 import 'package:daily_recipy/pages/signin_or_signup.pages.dart';
 import 'package:daily_recipy/utils/images.utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -46,16 +45,14 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void initSplash() async {
-    Future.delayed(
-        const Duration(
-          seconds: 5,
-        ), () {
-      if (GetIt.I.get<SharedPreferences>().getBool('isLogin') ?? false) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      } else {
+    await Future.delayed(const Duration(seconds: 2));
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user == null) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const SigniniOrSignup()));
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       }
     });
   }

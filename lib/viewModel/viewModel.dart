@@ -12,6 +12,5 @@ class ViewModel extends ChangeNotifier {
         List<Map<String, dynamic>>.from(jsonDecode(adsData)['ads']);
 
     return imageList = dataDecoded.map((e) => ImagesData.fromJson(e)).toList();
-    notifyListeners();
   }
 }

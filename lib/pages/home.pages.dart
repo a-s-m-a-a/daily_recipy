@@ -154,9 +154,7 @@ class _HomePageState extends State<HomePage> {
                   )
                 ]),
                 DotsIndicator(
-                  dotsCount: viewModel.imageList.isEmpty
-                      ? 1
-                      : (viewModel.imageList.length),
+                  dotsCount: 5,
                   position: sliderIndex,
                   decorator: DotsDecorator(
                     size: const Size.square(9.0),
@@ -322,7 +320,7 @@ class _HomePageState extends State<HomePage> {
                                 Icons.favorite_border_outlined,
                               ),
                               Transform.translate(
-                                offset: Offset(60, -40),
+                                offset: const Offset(60, -40),
                                 child: Expanded(
                                   child: Container(
                                     height: 130,
