@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:daily_recipy/pages/home.pages.dart';
 import 'package:daily_recipy/pages/signin_or_signup.pages.dart';
 import 'package:daily_recipy/utils/images.utils.dart';
@@ -12,11 +14,30 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  StreamSubscription<User?>? _listener;
   @override
   void initState() {
     super.initState();
     initSplash();
-    setState(() {});
+  }
+
+  void initSplash() async {
+    await Future.delayed(const Duration(seconds: 2));
+    _listener = FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user == null) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const SigniniOrSignup()));
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _listener?.cancel();
+    super.dispose();
   }
 
   @override
@@ -42,18 +63,5 @@ class _SplashPageState extends State<SplashPage> {
         )),
       ),
     ));
-  }
-
-  void initSplash() async {
-    await Future.delayed(const Duration(seconds: 2));
-    FirebaseAuth.instance.authStateChanges().listen((user) {
-      if (user == null) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SigniniOrSignup()));
-      } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
-    });
   }
 }

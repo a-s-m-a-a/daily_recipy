@@ -39,6 +39,8 @@ dependencies:
   provider: ^6.1.1
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
+  overlay_kit: ^1.0.7
+  cloud_firestore: ^4.14.0
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +67,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/data/imagesData.json
+    - assets/data/ad.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

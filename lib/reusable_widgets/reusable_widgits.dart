@@ -24,7 +24,7 @@ Consumer<AppAuthprovider> reusableTextFormField(
                 return null;
               },
               controller: controller,
-              obscureText: isPasswordType,
+              obscureText: isPasswordType ? authProvider.obsecuretext : false,
               enableSuggestions: isPasswordType,
               autocorrect: isPasswordType,
               cursorColor: Colors.orange,
