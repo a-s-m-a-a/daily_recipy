@@ -69,9 +69,9 @@ class _AdsWidgetState extends State<AdsWidget> {
                                 icon: const Icon(Icons.arrow_back)),
                             const Spacer(),
                             IconButton(
-                                onPressed: () =>
-                                    adsProvider.onPressArrowRight(),
-                                icon: const Icon(Icons.arrow_forward)),
+                              onPressed: () => adsProvider.onPressArrowRight(),
+                              icon: const Icon(Icons.arrow_forward),
+                            ),
                           ],
                         ),
                       ),

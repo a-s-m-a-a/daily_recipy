@@ -1,3 +1,4 @@
+import 'package:daily_recipy/reusable_widgets/reusableTextFormField.dart';
 import 'package:daily_recipy/reusable_widgets/reusable_widgits.dart';
 import 'package:daily_recipy/utils/colors.utils.dart';
 import 'package:daily_recipy/utils/images.utils.dart';
@@ -15,8 +16,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
+  GlobalKey<FormState>? formKey;
   @override
   void initState() {
+    formKey = GlobalKey<FormState>();
     Provider.of<AppAuthprovider>(context, listen: false).providerInit();
     super.initState();
   }
@@ -55,22 +58,22 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 Form(
-                                  key: authProvider.formKey,
+                                  key: formKey,
                                   child: Column(children: [
-                                    reusableTextFormField(
-                                        context,
-                                        false,
-                                        Icons.email,
-                                        "Email Address",
-                                        "Enter Valid Email",
-                                        authProvider.emailController!),
-                                    reusableTextFormField(
-                                        context,
-                                        true,
-                                        Icons.password,
-                                        "Password",
-                                        "Enter your password",
-                                        authProvider.passwordController!),
+                                    ReusableTextFormField(
+                                        controller:
+                                            authProvider.emailController!,
+                                        icon: Icons.email,
+                                        isPasswordType: false,
+                                        lableText: "Email Address",
+                                        validateText: "Enter Valid Email"),
+                                    ReusableTextFormField(
+                                        controller:
+                                            authProvider.passwordController!,
+                                        icon: Icons.password,
+                                        isPasswordType: true,
+                                        lableText: "Password",
+                                        validateText: "Enter Valid password"),
                                   ]),
                                 ),
                                 richText(1, ["Forget Password?"],
@@ -79,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                                   padding: const EdgeInsets.all(20),
                                   child:
                                       reusableButton(width, 50, "Sign In", () {
-                                    authProvider.signIn(context);
+                                    authProvider.signIn(context, formKey);
                                   }),
                                 ),
                               ],
@@ -103,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                         ], [
                           () {},
                           () {
-                            authProvider.openRegisterpage(context);
+                            authProvider.openRegisterpage(context, formKey);
                           }
                         ])
                       : null,

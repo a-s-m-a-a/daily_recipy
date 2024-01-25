@@ -24,13 +24,13 @@ class AdsProvider extends ChangeNotifier {
     carouselController = null;
   }
 
-  void onPressArrowLift() async {
-    await carouselController!.previousPage();
+  void onPressArrowLift() {
+    carouselController!.previousPage();
     notifyListeners();
   }
 
-  void onPressArrowRight() async {
-    await carouselController!.nextPage();
+  void onPressArrowRight() {
+    carouselController!.nextPage();
     notifyListeners();
   }
 

@@ -1,3 +1,4 @@
+import 'package:daily_recipy/reusable_widgets/reusableTextFormField.dart';
 import 'package:daily_recipy/reusable_widgets/reusable_widgits.dart';
 import 'package:daily_recipy/utils/colors.utils.dart';
 import 'package:daily_recipy/utils/images.utils.dart';
@@ -15,8 +16,10 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   late double width = MediaQuery.of(context).size.width;
   late double height = MediaQuery.of(context).size.height;
+  GlobalKey<FormState>? formKey;
   @override
   void initState() {
+    formKey = GlobalKey<FormState>();
     Provider.of<AppAuthprovider>(context, listen: false).providerInit();
     super.initState();
   }
@@ -55,30 +58,30 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                 ),
                                 Form(
-                                  key: authProvider.formKey,
+                                  key: formKey,
                                   child: Column(
                                     children: [
-                                      reusableTextFormField(
-                                          context,
-                                          false,
-                                          Icons.email,
-                                          "Full Name",
-                                          "Enter your name",
-                                          authProvider.nameController!),
-                                      reusableTextFormField(
-                                          context,
-                                          false,
-                                          Icons.email,
-                                          "Email Address",
-                                          "Enter your Email",
-                                          authProvider.emailController!),
-                                      reusableTextFormField(
-                                          context,
-                                          true,
-                                          Icons.password,
-                                          "Password",
-                                          "Enter your password",
-                                          authProvider.passwordController!),
+                                      ReusableTextFormField(
+                                          controller:
+                                              authProvider.nameController!,
+                                          icon: Icons.email,
+                                          isPasswordType: false,
+                                          lableText: "Full Name",
+                                          validateText: "Enter your name"),
+                                      ReusableTextFormField(
+                                          controller:
+                                              authProvider.emailController!,
+                                          icon: Icons.email,
+                                          isPasswordType: false,
+                                          lableText: "Email Address",
+                                          validateText: "Enter your Email"),
+                                      ReusableTextFormField(
+                                          controller:
+                                              authProvider.passwordController!,
+                                          icon: Icons.password,
+                                          isPasswordType: true,
+                                          lableText: "Password",
+                                          validateText: "Enter your Password"),
                                     ],
                                   ),
                                 ),
@@ -86,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   padding: const EdgeInsets.all(20),
                                   child:
                                       reusableButton(width, 50, "Register", () {
-                                    authProvider.signUp(context);
+                                    authProvider.signUp(context, formKey);
                                   }),
                                 ),
                               ],
@@ -109,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ], [
                           () {},
                           () {
-                            authProvider.openLoginpage(context);
+                            authProvider.openLoginpage(context, formKey);
                           }
                         ])
                       : null,

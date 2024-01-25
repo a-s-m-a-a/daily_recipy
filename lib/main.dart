@@ -2,6 +2,8 @@ import 'package:daily_recipy/firebase_options.dart';
 import 'package:daily_recipy/pages/splash.pages.dart';
 import 'package:daily_recipy/viewModel/ads_provider.dart';
 import 'package:daily_recipy/viewModel/app_auth_provider.dart';
+import 'package:daily_recipy/viewModel/ingredients_provider.dart';
+import 'package:daily_recipy/viewModel/recipes_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -23,7 +25,9 @@ void main() async {
   }
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AppAuthprovider()),
-    ChangeNotifierProvider(create: (_) => AdsProvider())
+    ChangeNotifierProvider(create: (_) => AdsProvider()),
+    ChangeNotifierProvider(create: (_) => IngredientProvider()),
+    ChangeNotifierProvider(create: (_) => RecipeProvider()),
   ], child: const MyApp()));
 }
 

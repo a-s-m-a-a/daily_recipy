@@ -8,20 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 
 class AppAuthprovider extends ChangeNotifier {
-  GlobalKey<FormState>? formKey;
   TextEditingController? emailController;
   TextEditingController? passwordController;
   TextEditingController? nameController;
   bool obsecuretext = false;
 
   void providerInit() {
-    formKey = GlobalKey<FormState>();
     emailController = TextEditingController();
     passwordController = TextEditingController();
     nameController = TextEditingController();
   }
 
-  void providerDespose() {
+  void providerDespose(GlobalKey<FormState>? formKey) {
     formKey = null;
     emailController = null;
     passwordController = null;
@@ -29,19 +27,20 @@ class AppAuthprovider extends ChangeNotifier {
     obsecuretext = false;
   }
 
-  void openRegisterpage(BuildContext context) {
-    providerDespose();
+  void openRegisterpage(BuildContext context, GlobalKey<FormState>? formKey) {
+    providerDespose(formKey);
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (_) => const RegisterPage()));
   }
 
-  void openLoginpage(BuildContext context) {
-    providerDespose();
+  void openLoginpage(BuildContext context, GlobalKey<FormState>? formKey) {
+    providerDespose(formKey);
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (_) => const LoginPage()));
   }
 
-  Future<void> signUp(BuildContext context) async {
+  Future<void> signUp(
+      BuildContext context, GlobalKey<FormState>? formKey) async {
     try {
       if (formKey?.currentState?.validate() ?? false) {
         OverlayLoadingProgress.start();
@@ -52,7 +51,7 @@ class AppAuthprovider extends ChangeNotifier {
         if (credentials.user != null) {
           await credentials.user?.updateDisplayName(nameController!.text);
           OverlayLoadingProgress.stop();
-          providerDespose();
+          providerDespose(formKey);
           if (context.mounted) {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (_) => const HomePage()));
@@ -65,7 +64,8 @@ class AppAuthprovider extends ChangeNotifier {
     }
   }
 
-  Future<void> signIn(BuildContext context) async {
+  Future<void> signIn(
+      BuildContext context, GlobalKey<FormState>? formKey) async {
     try {
       if (formKey?.currentState?.validate() ?? false) {
         OverlayLoadingProgress.start();
@@ -75,7 +75,7 @@ class AppAuthprovider extends ChangeNotifier {
                 password: passwordController!.text);
         if (credentials.user != null) {
           OverlayLoadingProgress.stop();
-          providerDespose();
+          providerDespose(formKey);
           OverlayToastMessage.show(
             widget: const ToastMessageWidget(
               message: "You Login Successfully ",
